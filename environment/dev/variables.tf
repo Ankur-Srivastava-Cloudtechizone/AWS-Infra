@@ -24,19 +24,19 @@ variable "environment" {
   type = string
 }
 
-variable "aws_region" {
-  description = "AWS region"
-  type        = string
-  default     = "ap-south-1"
-}
+# variable "aws_region" {
+#   description = "AWS region"
+#   type        = string
+#   default     = "ap-south-1"
+# }
 
-variable "common_tags" {
-  type = map(string)
-}
+# variable "common_tags" {
+#   type = map(string)
+# }
 
-variable "environment" {
-  type = string
-}
+# variable "environment" {
+#   type = string
+# }
 
 variable "db_clusters" {
   type = map(object({
@@ -109,6 +109,6 @@ variable "security_group_names" {
   type = set(string)
 }
 
-variable "environment" {
-  type = string
-}
+# variable "environment" {
+#   type = string
+# }
