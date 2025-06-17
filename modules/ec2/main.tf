@@ -8,11 +8,8 @@ resource "aws_instance" "ec2_instance" {
   associate_public_ip_address = each.value.associate_public_ip
   key_name                    = each.value.key_name
 
-  tags = merge(
-    {
-      Name        = "${var.environment}-${each.key}"
-      Environment = var.environment
-    },
-    var.common_tags
-  )
+  tags = merge(var.common_tags, {
+    Name        = "${var.environment}-${each.key}"
+  })
+
 }

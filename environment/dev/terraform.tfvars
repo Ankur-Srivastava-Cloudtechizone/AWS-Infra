@@ -71,3 +71,7 @@ etl_jobs = {
     script_location = "s3://scripts/glue-job.py"
   }
 }
+
+subnet_names         = ["subnet-public-a", "subnet-public-b"]
+security_group_names = ["ec2-sg"]
+

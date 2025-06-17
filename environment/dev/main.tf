@@ -5,11 +5,14 @@ module "security_groups" {
 }
 
 module "ec2" {
-  source        = "../../modules/ec2"
-  instances     = var.instances
-  environment   = var.environment
-  common_tags   = var.common_tags
+  source               = "../../modules/ec2"
+  instances            = var.instances
+  subnet_names         = var.subnet_names
+  security_group_names = var.security_group_names
+  common_tags          = var.common_tags
+  environment          = var.environment
 }
+
 
 module "aurora" {
   source        = "../../modules/aurora"
