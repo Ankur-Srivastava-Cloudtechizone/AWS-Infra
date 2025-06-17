@@ -1,3 +1,9 @@
+module "security_groups" {
+  source          = "../../modules/security_groups"
+  security_groups = var.security_groups
+  common_tags     = var.common_tags
+}
+
 module "ec2" {
   source        = "../../modules/ec2"
   instances     = var.instances

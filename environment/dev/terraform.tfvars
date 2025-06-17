@@ -5,7 +5,7 @@ instances = {
     ami                   = "ami-0abcdef1234567890"
     instance_type         = "t3.micro"
     subnet_id             = "subnet-abc123"
-    security_group_ids    = ["sg-abc123"]
+    security_group_ids    = [module.security_groups.security_group_ids["ec2-sg-dev"]]
     associate_public_ip   = true
     key_name              = "my-secure-key"
   }
@@ -73,5 +73,19 @@ etl_jobs = {
   "glue-job" = {
     role_arn        = "arn:aws:iam::123456789:role/AWSGlueServiceRole"
     script_location = "s3://scripts/glue-job.py"
+  }
+}
+
+security_groups = {
+  "ec2-sg-dev" = {
+    description       = "Security Group for EC2 Dev"
+    vpc_id            = "vpc-0abcd1234"
+    ssh_allowed_cidrs = ["203.0.113.0/24"]
+  }
+
+  "bastion-sg" = {
+    description       = "Bastion host SG"
+    vpc_id            = "vpc-0abcd1234"
+    ssh_allowed_cidrs = ["0.0.0.0/0"]
   }
 }

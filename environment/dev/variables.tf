@@ -90,3 +90,12 @@ variable "etl_jobs" {
     script_location = string
   }))
 }
+
+variable "security_groups" {
+  description = "Map of security groups"
+  type = map(object({
+    description       = string
+    vpc_id            = string
+    ssh_allowed_cidrs = list(string)
+  }))
+}
