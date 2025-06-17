@@ -1,3 +1,6 @@
-output "instance_ids" {
-  value = { for k, v in aws_instance.this : k => v.id }
+output "ec2_instance_public_ips" {
+  value = {
+    for key, inst in aws_instance.ec2_instance :
+    key => inst.public_ip
+  }
 }
