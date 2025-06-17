@@ -1,15 +1,27 @@
-
 aws_region = "ap-south-1"
 
-ec2_instances = {
-  "web1" = {
-    ami                    = "ami-12345678"
-    instance_type          = "t3.micro"
-    key_name               = "my-key"
-    subnet_id              = "subnet-abc"
-    vpc_security_group_ids = ["sg-123"]
+instances = {
+  "web-server-1" = {
+    ami                   = "ami-0abcdef1234567890"
+    instance_type         = "t3.micro"
+    subnet_id             = "subnet-abc123"
+    security_group_ids    = ["sg-abc123"]
+    associate_public_ip   = true
+    key_name              = "my-secure-key"
   }
 }
+
+environment = "dev"
+
+common_tags = {
+  Project     = "NetwebInfra"
+  Owner       = "Ankur"
+  CostCenter  = "CloudOps"
+}
+
+#aws_region = "ap-south-1"
+
+#environment = "dev"
 
 db_clusters = {
   "aurora-db" = {
@@ -23,8 +35,13 @@ db_clusters = {
 
 eks_clusters = {
   "prod-eks" = {
-    role_arn   = "arn:aws:iam::123456789:role/EKSRole"
-    subnet_ids = ["subnet-abc", "subnet-def"]
+    role_arn      = "arn:aws:iam::123456789:role/EKSRole"
+    version       = "1.29"
+    subnet_ids    = ["subnet-abc", "subnet-def"]
+    node_role_arn = "arn:aws:iam::123456789:role/EKSNodeRole"
+    desired_size  = 2
+    max_size      = 3
+    min_size      = 1
   }
 }
 

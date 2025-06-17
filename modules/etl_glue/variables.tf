@@ -1,7 +1,7 @@
-variable "cloudfront_distributions" {
+variable "etl_jobs" {
   type = map(object({
-    comment       = string
-    origin_domain = string
+    role_arn        = string
+    script_location = string
   }))
 }
 

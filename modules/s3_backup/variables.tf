@@ -1,4 +1,11 @@
-variable "buckets" {
-  description = "S3 Backup buckets map"
-  type        = map(object({}))
+variable "s3_buckets" {
+  type = map(object({}))
+}
+
+variable "common_tags" {
+  type = map(string)
+}
+
+variable "environment" {
+  type = string
 }

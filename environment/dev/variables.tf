@@ -1,3 +1,27 @@
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+  default     = "ap-south-1"
+}
+
+variable "instances" {
+  type = map(object({
+    ami                   = string
+    instance_type         = string
+    subnet_id             = string
+    security_group_ids    = list(string)
+    associate_public_ip   = bool
+    key_name              = string
+  }))
+}
+
+variable "common_tags" {
+  type = map(string)
+}
+
+variable "environment" {
+  type = string
+}
 
 variable "aws_region" {
   description = "AWS region"
@@ -5,14 +29,12 @@ variable "aws_region" {
   default     = "ap-south-1"
 }
 
-variable "ec2_instances" {
-  type = map(object({
-    ami                    = string
-    instance_type          = string
-    key_name               = string
-    subnet_id              = string
-    vpc_security_group_ids = list(string)
-  }))
+variable "common_tags" {
+  type = map(string)
+}
+
+variable "environment" {
+  type = string
 }
 
 variable "db_clusters" {
@@ -27,8 +49,13 @@ variable "db_clusters" {
 
 variable "eks_clusters" {
   type = map(object({
-    role_arn   = string
-    subnet_ids = list(string)
+    role_arn        = string
+    version         = string
+    subnet_ids      = list(string)
+    node_role_arn   = string
+    desired_size    = number
+    max_size        = number
+    min_size        = number
   }))
 }
 
@@ -49,6 +76,7 @@ variable "route53_records" {
     name         = string
     type         = string
     record_value = string
+    ttl          = optional(number)
   }))
 }
 

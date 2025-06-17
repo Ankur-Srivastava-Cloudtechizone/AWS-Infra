@@ -1,4 +1,3 @@
-# s3_backup outputs here
 output "bucket_names" {
-  value = [for b in aws_s3_bucket.this : b.bucket]
+  value = [for k, v in aws_s3_bucket.this : v.bucket]
 }

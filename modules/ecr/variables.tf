@@ -1,5 +1,11 @@
-# ecr variables here
-variable "repositories" {
-  description = "ECR repositories map"
+variable "ecr_repositories" {
   type = map(object({}))
+}
+
+variable "common_tags" {
+  type = map(string)
+}
+
+variable "environment" {
+  type = string
 }
